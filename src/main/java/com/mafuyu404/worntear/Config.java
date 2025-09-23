@@ -5,19 +5,16 @@ import net.minecraftforge.common.ForgeConfigSpec;
 import java.util.List;
 
 public class Config {
-    public static final ForgeConfigSpec.ConfigValue<List<? extends String>>  CLIMB_BLOCK_WHITELIST;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> TOOLTIP;
     private static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
 
     public static final ForgeConfigSpec SPEC;
 
     static {
         BUILDER.push("Config");
-        CLIMB_BLOCK_WHITELIST = BUILDER
-                .comment("eg. :0.3+[0.4,0.8]*0.7")
-                .defineList("ClimbBlockWhitelist",
-                        List.of("minecraft:stone"),
-                        entry -> entry instanceof String
-                );
+        TOOLTIP = BUILDER
+                .comment("是否在物品提示框中显示耐久影响系数。")
+                .define("tooltip", true);
         SPEC = BUILDER.build();
     }
 }

@@ -1,5 +1,6 @@
 package com.mafuyu404.worntear.event;
 
+import com.mafuyu404.worntear.Config;
 import com.mafuyu404.worntear.Worntear;
 import com.mafuyu404.worntear.init.RuleCache;
 import com.mafuyu404.worntear.init.Utils;
@@ -13,6 +14,7 @@ import net.minecraftforge.fml.common.Mod;
 public class ClientEvent {
     @SubscribeEvent
     public static void tooltip(ItemTooltipEvent event) {
+        if (!Config.TOOLTIP.get()) return;
         String rule = RuleCache.matchItem(Utils.getItemRegistryName(event.getItemStack().getItem()));
         if (rule == null) return;
         float scale = Utils.resolveRule(rule, Utils.getDamagePercent(event.getItemStack()));
